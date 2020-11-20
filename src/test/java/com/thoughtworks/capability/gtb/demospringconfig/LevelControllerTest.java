@@ -1,11 +1,12 @@
 package com.thoughtworks.capability.gtb.demospringconfig;
 
+import javafx.application.Application;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +17,8 @@ class LevelControllerTest {
 
     @Nested
     @SpringBootTest
-    @ActiveProfiles("zero")
+    @ContextConfiguration(
+            initializers = ZeroPropertyOverrideContextInitializer.class)
     class ZeroLevelNumber {
 
         @Autowired
@@ -32,7 +34,8 @@ class LevelControllerTest {
 
     @Nested
     @SpringBootTest
-    @ActiveProfiles("one")
+    @ContextConfiguration(
+            initializers = OnePropertyOverrideContextInitializer.class)
     class OneLevelNumber {
 
         @Autowired
@@ -48,7 +51,8 @@ class LevelControllerTest {
 
     @Nested
     @SpringBootTest
-    @ActiveProfiles("two")
+    @ContextConfiguration(
+            initializers = TwoPropertyOverrideContextInitializer.class)
     class TwoLevelNumber {
 
         @Autowired
