@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
@@ -14,7 +15,8 @@ import static org.junit.Assert.assertEquals;
 class LevelControllerTest {
 
     @Nested
-    @SpringBootTest(properties = { "levelNumber=0" })
+    @SpringBootTest
+    @ActiveProfiles("zero")
     class ZeroLevelNumber {
 
         @Autowired
@@ -29,11 +31,12 @@ class LevelControllerTest {
     }
 
     @Nested
-    @SpringBootTest(properties = { "levelNumber=1" })
+    @SpringBootTest
+    @ActiveProfiles("one")
     class OneLevelNumber {
 
         @Autowired
-        LevelController levelController;
+        LevelController levelController = new LevelController();
 
         @Test
         void should_return_basic_when_level_number_less_than_1() {
@@ -44,11 +47,12 @@ class LevelControllerTest {
     }
 
     @Nested
-    @SpringBootTest(properties = { "levelNumber=2" })
+    @SpringBootTest
+    @ActiveProfiles("two")
     class TwoLevelNumber {
 
         @Autowired
-        LevelController levelController;
+        LevelController levelController = new LevelController();
 
         @Test
         void should_return_basic_when_level_number_less_than_1() {
